@@ -1,2 +1,2 @@
-# expense manager 
- application for expenses
+# ExpenseController
+expenseController
