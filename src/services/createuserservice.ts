@@ -33,4 +33,4 @@ const createuser = async (req: Request, res: Response) => {
   
   };
   
-export default createuser;
+export default createuser; 
