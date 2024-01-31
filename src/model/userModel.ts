@@ -1,7 +1,7 @@
-// userModel.ts
-import mongoose, { Document, Schema } from 'mongoose';
+// userModel.ts 
+import mongoose, { Document, Model, Schema } from 'mongoose';
 import IUser from "../interfaces/IUser"
-const userSchema = new Schema({
+const userSchema = new Schema<IUser>({
     username: {
         type: String,
         required: [true, "Please enter a unique name"],
@@ -13,29 +13,28 @@ const userSchema = new Schema({
         required: true,
         unique: true,
     },
-    amount: {
+    totalIncome: {
         type: Number,
-        default : 0
+        default: 0
     },
-    amountLeft: {
+    totalExpense: {
         type: Number,
-        default : 0
-      
+        default: 0
     },
-    transactions: [
+    account: [
         {
             type: Schema.Types.ObjectId,
-            ref: 'Expense',
+            ref: 'Account',
         },
     ],
-    settlements: [
+    budget: [
         {
             type: Schema.Types.ObjectId,
-            ref: 'Settlement',
+            ref: 'Budget',
         },
     ],
 });
 
-const UserModel = mongoose.model<Document &  IUser>('User', userSchema);
+const UserModel: Model<IUser> = mongoose.model<IUser>('User', userSchema);
 
 export default UserModel;
